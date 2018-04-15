@@ -13,7 +13,7 @@ jobs:
     <<: *use_node8
     steps:
       - checkout
-      - run: cd applications/homepage
+      - run: cd /tmp/workspace/applications/homepage
       - run: yarn
       - run: yarn test
       - run: yarn build
