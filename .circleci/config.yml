@@ -7,7 +7,7 @@ aliases:
 
 jobs:
   job_tests:
-    <<: *use_docker_node8
+    <<: *use_node8
     steps:
       - checkout
 
