@@ -1,7 +1,7 @@
 version: 2
 
-use_machine: &use_machine
-  machine: true
+use_docker: &use_docker
+  docker: true
 use_node8: &use_node8
   docker:
     - image: circleci/node:8
@@ -20,7 +20,7 @@ jobs:
       - run: cd applications/homepage && yarn
       - run: cd applications/homepage && yarn build
   homepage_packager:
-    <<: *use_machine
+    <<: *use_docker
     steps:
       - checkout
       - setup_remote_docker
