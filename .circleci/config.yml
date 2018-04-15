@@ -17,7 +17,6 @@ jobs:
           paths:
             - node_modules
   homepage_build:
-    <<: *use_defaults
     <<: *use_node8
     steps:
       - run: cd applications/homepage
