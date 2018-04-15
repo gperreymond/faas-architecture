@@ -1,7 +1,7 @@
 version: 2
 
 defaults: &defaults
-  working_directory: /workflows
+  working_directory: /tmp/workspace
 
 use_node8: &use_node8
   docker:
