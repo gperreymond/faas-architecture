@@ -5,27 +5,36 @@ use_node8: &use_node8
     - image: circleci/node:8
 
 jobs:
-  homepage_test:
+  homepage_tester:
     <<: *use_node8
     steps:
       - checkout
       - run: cd applications/homepage && yarn
       - run: cd applications/homepage && yarn test
-  homepage_build:
+  homepage_builder:
     <<: *use_node8
     steps:
       - checkout
       - run: cd applications/homepage && yarn
       - run: cd applications/homepage && yarn build
+  homepage_packager:
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: cd applications/homepage && docker build -t faas-homepage .
+      - run: docker image ls
 
 workflows:
   version: 2
   homepage:
     jobs:
-      - homepage_test:
+      - homepage_tester:
           filters:
             branches:
               only: master
-      - homepage_build:
+      - homepage_builder:
           requires:
-            - homepage_test
+            - homepage_tester
+      - homepage_packager:
+          requires:
+            - homepage_builder
