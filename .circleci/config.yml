@@ -13,8 +13,13 @@ jobs:
     <<: *use_node8
     steps:
       - checkout
-      - run: cd /tmp/workspace/applications/homepage
-      - run: ls -l
+      - run:
+          name: "test & build"
+          command: |
+            cd applications/homepage
+            yarn
+            yarn test
+            yarn build
 
 workflows:
   version: 2
