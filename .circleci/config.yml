@@ -13,7 +13,7 @@ jobs:
     <<: *use_node8
     steps:
       - checkout
-      - run: cd $PWD/applications/homepage
+      - run: echo $PWD
       - run: ls -l
   homepage_build:
     <<: *use_defaults
