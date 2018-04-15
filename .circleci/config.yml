@@ -14,9 +14,7 @@ jobs:
     steps:
       - checkout
       - run: cd /tmp/workspace/applications/homepage
-      - run: yarn
-      - run: yarn test
-      - run: yarn build
+      - run: ls -l
 
 workflows:
   version: 2
