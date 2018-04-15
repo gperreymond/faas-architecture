@@ -60,6 +60,8 @@ workflows:
       - homepage_packager:
           requires:
             - homepage_builder
+  company:
+    jobs:
       - company_tester:
           filters:
             branches:

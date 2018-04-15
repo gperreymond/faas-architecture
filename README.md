@@ -4,13 +4,7 @@
 
 ## Introduction
 
-Here my approach of a services oriented architecture
+Here my approach of a services oriented architecture, for back-end, middle-end and front-end
 
 * node
 * go
-
-## Commands CLI
-
-```
-$ ./tasks/infra/start.sh
-```
