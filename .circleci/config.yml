@@ -13,10 +13,10 @@ jobs:
     <<: *use_node8
     steps:
       - checkout
-      - cd applications/homepage
-      - yarn
-      - yarn test
-      - yarn build
+      - run: cd applications/homepage
+      - run: yarn
+      - run: yarn test
+      - run: yarn build
 
 workflows:
   version: 2
