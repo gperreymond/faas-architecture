@@ -8,21 +8,37 @@ use_node8: &use_node8
     - image: circleci/node:8
 
 jobs:
-  homepage:
+  homepage_test:
     <<: *use_defaults
     <<: *use_node8
     steps:
       - checkout
       - run:
-          name: "test & build"
+          name: "test"
           command: |
             cd applications/homepage
             yarn
-            yarn test
             yarn build
+    homepage_build:
+      <<: *use_defaults
+      <<: *use_node8
+      steps:
+        - checkout
+        - run:
+            name: "build"
+            command: |
+              cd applications/homepage
+              yarn
+              yarn build
 
 workflows:
   version: 2
-  build:
+  homepage:
     jobs:
-      - homepage
+      - homepage_test:
+          filters:
+            branches:
+              only: master
+      - homepage_build:
+          requires:
+            - homepage_test
