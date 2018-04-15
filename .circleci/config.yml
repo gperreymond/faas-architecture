@@ -13,23 +13,19 @@ jobs:
     <<: *use_node8
     steps:
       - checkout
+      - run: cd $PWD/applications/homepage
+      - run: ls -l
+  homepage_build:
+    <<: *use_defaults
+    <<: *use_node8
+    steps:
+      - checkout
       - run:
-          name: "test"
+          name: "build"
           command: |
             cd applications/homepage
             yarn
             yarn build
-    homepage_build:
-      <<: *use_defaults
-      <<: *use_node8
-      steps:
-        - checkout
-        - run:
-            name: "build"
-            command: |
-              cd applications/homepage
-              yarn
-              yarn build
 
 workflows:
   version: 2
