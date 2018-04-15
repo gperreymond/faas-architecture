@@ -1,0 +1,10 @@
+.npmrc
+Dockerfile
+package.json
+static
+webpack.config.js
+yarn.lock
+yarn-error.log
+
+node_modules
+src

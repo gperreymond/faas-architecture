@@ -7,6 +7,8 @@ use_node8: &use_node8
     - image: circleci/node:8
 
 jobs:
+
+  # webui-homepage
   homepage_tester:
     <<: *use_node8
     steps:
@@ -24,7 +26,25 @@ jobs:
     steps:
       - checkout
       - run: cd applications/homepage && docker build -t faas-homepage .
-      - run: docker image ls
+
+  # webui-company
+  company_tester:
+    <<: *use_node8
+    steps:
+      - checkout
+      - run: cd applications/company && yarn
+      - run: cd applications/company && yarn test
+  company_builder:
+    <<: *use_node8
+    steps:
+      - checkout
+      - run: cd applications/company && yarn
+      - run: cd applications/company && yarn build
+  company_packager:
+    <<: *use_machine
+    steps:
+      - checkout
+      - run: cd applications/company && docker build -t faas-homepage .
 
 workflows:
   version: 2
@@ -40,3 +60,13 @@ workflows:
       - homepage_packager:
           requires:
             - homepage_builder
+      - company_tester:
+          filters:
+            branches:
+              only: master
+      - company_builder:
+          requires:
+            - company_tester
+      - company_packager:
+          requires:
+            - company_builder

@@ -8,3 +8,9 @@ Here my approach of a services oriented architecture
 
 * node
 * go
+
+## Commands CLI
+
+```
+$ ./tasks/infra/start.sh
+```

@@ -13,10 +13,8 @@ import (
 func main() {
 	r := mux.NewRouter()
 	// Serve static assets directly.
-	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("public/dist/"))))
 	r.PathPrefix("/company/static/").Handler(http.StripPrefix("/company/static/", http.FileServer(http.Dir("public/dist/"))))
 	// Catch-all: Serve our JavaScript application's entry-point (index.html).
-	r.PathPrefix("/").HandlerFunc(IndexHandler("public/index.html"))
 	r.PathPrefix("/company").HandlerFunc(IndexHandler("public/index.html"))
 	srv := &http.Server{
 		Handler:      handlers.LoggingHandler(os.Stdout, r),
