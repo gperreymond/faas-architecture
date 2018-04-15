@@ -1,12 +1,15 @@
 version: 2
 
-aliases:
-  - &use_node8
-    docker:
-      - image: circleci/node:8
+defaults: &defaults
+  working_directory: /tmp
+
+use_node8: &use_node8
+  docker:
+    - image: circleci/node:8
 
 jobs:
   job_tests:
+    <<: *defaults
     <<: *use_node8
     steps:
       - checkout
