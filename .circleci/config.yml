@@ -19,7 +19,7 @@ jobs:
     <<: *use_node8
     steps:
       - attach_workspace:
-          at: /applications/homepage/node_modules
+          at: applications/homepage/node_modules
       - run: cd applications/homepage && yarn build
 
 workflows:
