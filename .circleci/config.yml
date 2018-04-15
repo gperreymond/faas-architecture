@@ -1,31 +1,27 @@
 version: 2
 
-use_defaults: &use_defaults
-  working_directory: /tmp/workspace
-
 use_node8: &use_node8
   docker:
     - image: circleci/node:8
 
 jobs:
   homepage_test:
-    <<: *use_defaults
     <<: *use_node8
     steps:
       - checkout
-      - run: echo $PWD
-      - run: ls -l
+      - run: cd applications/homepage
+      - run: yarn
+      - run: yarn test
+      - persist_to_workspace:
+          root: applications/homepage
+          paths:
+            - node_modules
   homepage_build:
     <<: *use_defaults
     <<: *use_node8
     steps:
-      - checkout
-      - run:
-          name: "build"
-          command: |
-            cd applications/homepage
-            yarn
-            yarn build
+      - run: cd applications/homepage
+      - run: yarn build
 
 workflows:
   version: 2
