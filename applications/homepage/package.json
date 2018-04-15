@@ -1,0 +1,21 @@
+{
+  "name": "homepage",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "webpack -d --watch",
+    "build": "webpack -p",
+    "test": "echo \"no test specified\" && exit 0"
+  },
+  "author": "",
+  "devDependencies": {
+    "babel-loader": "7.1.4",
+    "css-loader": "0.28.11",
+    "vue": "2.5.16",
+    "vue-loader": "14.2.2",
+    "vue-router": "3.0.1",
+    "vue-template-compiler": "2.5.16",
+    "webpack": "4.5.0",
+    "webpack-cli": "2.0.14"
+  }
+}

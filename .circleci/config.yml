@@ -1,6 +1,6 @@
 version: 2
 
-defaults: &defaults
+use_defaults: &use_defaults
   working_directory: /tmp/workspace
 
 use_node8: &use_node8
@@ -8,14 +8,18 @@ use_node8: &use_node8
     - image: circleci/node:8
 
 jobs:
-  job_tests:
-    <<: *defaults
+  homepage:
+    <<: *use_defaults
     <<: *use_node8
     steps:
       - checkout
+      - cd applications/homepage
+      - yarn
+      - yarn test
+      - yarn build
 
 workflows:
   version: 2
-  tests:
+  build:
     jobs:
-      - job_tests
+      - homepage
