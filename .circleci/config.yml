@@ -1,0 +1,18 @@
+version: 2
+
+aliases:
+  - &use_node8
+    docker:
+      - image: circleci/node:8
+
+jobs:
+  job_tests:
+    <<: *use_docker_node8
+    steps:
+      - checkout
+
+workflows:
+  version: 2
+  tests:
+    jobs:
+      - job_tests
