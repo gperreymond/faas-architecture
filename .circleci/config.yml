@@ -9,9 +9,8 @@ jobs:
     <<: *use_node8
     steps:
       - checkout
-      - run: cd applications/homepage
-      - run: yarn
-      - run: yarn test
+      - run: cd applications/homepage && yarn
+      - run: cd applications/homepage && yarn test
       - persist_to_workspace:
           root: applications/homepage
           paths:
@@ -19,8 +18,9 @@ jobs:
   homepage_build:
     <<: *use_node8
     steps:
-      - run: cd applications/homepage
-      - run: yarn build
+      - attach_workspace:
+          at: /applications/homepage/node_modules
+      - run: cd applications/homepage && yarn build
 
 workflows:
   version: 2
