@@ -11,16 +11,11 @@ jobs:
       - checkout
       - run: cd applications/homepage && yarn
       - run: cd applications/homepage && yarn test
-      - persist_to_workspace:
-          root: applications/homepage
-          paths:
-            - node_modules
   homepage_build:
     <<: *use_node8
     steps:
       - checkout
-      - attach_workspace:
-          at: applications/homepage/node_modules
+      - run: cd applications/homepage && yarn
       - run: cd applications/homepage && yarn build
 
 workflows:
